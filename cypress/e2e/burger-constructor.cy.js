@@ -203,11 +203,11 @@ describe('Успешное оформление заказа', () => {
     cy.get('[data-cy="modal-close"]').click();
     cy.get('[data-cy="modal"]').should('not.exist');
 
-    // 7. Проверка очистки конструктора
+    // 7. Проверка полной очистки конструктора
     cy.wait(1000);
-    cy.get('[data-cy="constructor"]').should(
-      'not.contain',
-      'Краторная булка N-200i'
-    );
+    cy.get('[data-cy="constructor"]').within(() => {
+      cy.get('.constructor-element').should('not.exist');
+    });
+    
   });
 });
